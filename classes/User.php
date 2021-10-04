@@ -41,4 +41,13 @@ class User extends QueryBuilder {
         
 
     }
+
+    public function getUserWithId($id){
+    $sql = "SELECT * FROM users WHERE id=?";
+    $query = $this->db->prepare($sql);
+    $query->execute([$id]);
+
+    $postOwner = $query->fetch(PDO::FETCH_OBJ);
+    return $postOwner;
+    }
 }
